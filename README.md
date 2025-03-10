@@ -147,14 +147,16 @@ Project Link: [https://github.com/Kawaki-1998/Restaurant_rating_prediction](http
 
 ## 📸 Screenshots
 
-### Dashboard
-![Dashboard](docs/images/dashboard_full.png)
+Our application features a comprehensive dashboard with multiple views:
 
-### Model Metrics
-![Metrics](docs/images/metrics.png)
+### Main Dashboard
+![Dashboard](docs/images/dashboard/dashboard_overview.png)
 
-### Prediction Interface
-![Prediction](docs/images/prediction.png)
+### Model Performance Metrics
+![Metrics](docs/images/dashboard/model_performance.png)
+
+### Interactive Prediction Interface
+![Prediction](docs/images/dashboard/prediction_interface.png)
 
 ## 📚 Documentation
 
