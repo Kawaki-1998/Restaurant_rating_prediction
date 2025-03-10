@@ -60,17 +60,17 @@ class RatingPredictor:
         self.model = None
         self.model_dir = Path(os.getenv('MODEL_PATH', 'models'))
         self.feature_engineer = FeatureEngineer()
-        self._load_model()  # Load model immediately
-        
+    
     def _load_model(self):
-        """Load the model"""
-        try:
-            model_path = self.model_dir / 'best_model.joblib'
-            self.model = joblib.load(model_path)
-            logger.info(f"Model loaded successfully from {model_path}")
-        except Exception as e:
-            logger.error(f"Failed to load model from {model_path}: {str(e)}")
-            raise RuntimeError(f"Failed to load model from {model_path}: {str(e)}")
+        """Load the model if not already loaded"""
+        if self.model is None:
+            try:
+                model_path = self.model_dir / 'best_model.joblib'
+                self.model = joblib.load(model_path)
+                logger.info(f"Model loaded successfully from {model_path}")
+            except Exception as e:
+                logger.error(f"Failed to load model from {model_path}: {str(e)}")
+                raise RuntimeError(f"Failed to load model from {model_path}: {str(e)}")
     
     def predict(self, restaurant_data):
         """
@@ -92,6 +92,9 @@ class RatingPredictor:
             float: Predicted rating
         """
         try:
+            # Load model if not already loaded
+            self._load_model()
+            
             # Convert input to DataFrame
             df = pd.DataFrame([restaurant_data])
             

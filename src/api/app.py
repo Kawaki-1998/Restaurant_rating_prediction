@@ -44,8 +44,12 @@ predictor = RatingPredictor()
 
 # Load model metadata
 model_dir = Path('models')
-with open(model_dir / 'model_metadata.json', 'r') as f:
-    model_metadata = json.load(f)
+model_metadata = {}
+try:
+    with open(model_dir / 'model_metadata.json', 'r') as f:
+        model_metadata = json.load(f)
+except Exception as e:
+    logger.warning(f"Failed to load model metadata: {str(e)}")
 
 class Restaurant(BaseModel):
     """Restaurant data model"""
@@ -181,6 +185,9 @@ async def get_feature_importance():
         List of features and their importance scores
     """
     try:
+        # Load model if not already loaded
+        predictor._load_model()
+        
         feature_importance = []
         for feature_name, importance in zip(model_metadata["feature_names"], 
                                          predictor.model.feature_importances_):
