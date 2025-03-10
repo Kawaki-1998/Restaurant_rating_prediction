@@ -5,7 +5,6 @@ A machine learning project that predicts restaurant ratings based on various fea
 ![Python](https://img.shields.io/badge/Python-3.9-blue.svg)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.68.0-green.svg)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-1.0.0-orange.svg)
-![Docker](https://img.shields.io/badge/Docker-27.5.1-blue.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CI/CD](https://github.com/Kawaki-1998/Restaurant_rating_prediction/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/Kawaki-1998/Restaurant_rating_prediction/actions/workflows/ci-cd.yml)
 
@@ -13,7 +12,7 @@ A machine learning project that predicts restaurant ratings based on various fea
 
 This project analyzes restaurant data from Zomato to predict restaurant ratings. It uses machine learning to understand what factors influence a restaurant's rating and provides a user-friendly interface for making predictions.
 
-![Dashboard Overview](docs/images/dashboard.png)
+<img src="docs/images/dashboard/dashboard_overview.png" alt="Dashboard Overview" width="800"/>
 
 ### Key Features
 
@@ -26,28 +25,37 @@ This project analyzes restaurant data from Zomato to predict restaurant ratings.
 ## 📊 Data Analysis Insights
 
 ### Rating Distribution
-<img src="https://raw.githubusercontent.com/Kawaki-1998/Restaurant_rating_prediction/main/docs/images/visualizations/rating_distribution.png" alt="Rating Distribution" width="800"/>
+<img src="docs/images/visualizations/rating_distribution.png" alt="Rating Distribution" width="800"/>
+
 *Distribution of restaurant ratings shows a normal distribution with a slight right skew*
 
-### Top Cuisines Analysis
-<img src="https://raw.githubusercontent.com/Kawaki-1998/Restaurant_rating_prediction/main/docs/images/visualizations/top_cuisines.png" alt="Top Cuisines" width="800"/>
-*Analysis of the top-performing cuisines by average rating*
+### Cuisine Analysis
+<img src="docs/images/visualizations/cuisine_analysis.png" alt="Cuisine Analysis" width="800"/>
+
+*Analysis of ratings by cuisine type*
 
 ### Location Analysis
-![Location Analysis](docs/images/visualizations/location_analysis.png)
+<img src="docs/images/visualizations/location_analysis.png" alt="Location Analysis" width="800"/>
+
 *Geographic distribution of restaurants and their ratings*
 
-### Service Analysis
-<img src="https://raw.githubusercontent.com/Kawaki-1998/Restaurant_rating_prediction/main/docs/images/visualizations/services_analysis.png" alt="Service Analysis" width="800"/>
-*Comparison of online ordering and table booking availability*
-
 ### Cost vs Rating Analysis
-<img src="https://raw.githubusercontent.com/Kawaki-1998/Restaurant_rating_prediction/main/docs/images/visualizations/cost_analysis.png" alt="Cost Analysis" width="800"/>
+<img src="docs/images/visualizations/cost_analysis.png" alt="Cost Analysis" width="800"/>
+
 *Relationship between restaurant cost and ratings*
 
-### Feature Importance
-<img src="https://raw.githubusercontent.com/Kawaki-1998/Restaurant_rating_prediction/main/docs/images/visualizations/feature_importance.png" alt="Feature Importance" width="800"/>
-*Key factors influencing restaurant ratings*
+## 📈 Model Performance
+
+<img src="docs/images/dashboard/model_performance.png" alt="Model Performance" width="800"/>
+
+- **Model Type**: Random Forest Regressor
+- **R² Score**: 0.9121 (91.21% accuracy)
+- **MAE**: 0.234
+- **RMSE**: 0.312
+
+## 🎯 Prediction Interface
+
+<img src="docs/images/dashboard/prediction_interface.png" alt="Prediction Interface" width="800"/>
 
 ## 🛠️ Technologies Used
 
@@ -75,8 +83,6 @@ Restaurant_rating_prediction/
 ├── static/            # Static files for web dashboard
 ├── templates/         # HTML templates
 ├── tests/             # Unit tests
-├── Dockerfile         # Docker configuration
-├── docker-compose.yml # Docker Compose configuration
 └── requirements.txt   # Python dependencies
 ```
 
@@ -85,7 +91,6 @@ Restaurant_rating_prediction/
 ### Prerequisites
 
 - Python 3.9+
-- Docker (optional)
 
 ### Installation
 
@@ -102,23 +107,24 @@ Restaurant_rating_prediction/
    pip install -r requirements.txt
    ```
 
-3. **Run the application**
+3. **Run the application locally**
    ```bash
    python -m uvicorn src.api.app:app --reload
    ```
 
-### Using Docker
+### Deployment
 
-1. **Build and run with Docker**
+1. **Deploy to Heroku**
    ```bash
-   docker build -t restaurant-rating-app .
-   docker run -p 8000:8000 restaurant-rating-app
+   # Install Heroku CLI if not already installed
+   heroku create your-app-name
+   git push heroku main
    ```
 
-2. **Or using Docker Compose**
-   ```bash
-   docker-compose up --build
-   ```
+2. **Deploy to other platforms**
+   The application can be deployed to any platform that supports Python web applications:
+   - Install requirements: `pip install -r requirements.txt`
+   - Start with gunicorn: `gunicorn app:app`
 
 ## 🌐 Using the Web Dashboard
 
@@ -191,7 +197,7 @@ Project Link: [https://github.com/Kawaki-1998/Restaurant_rating_prediction](http
 This project uses GitHub Actions for Continuous Integration and Deployment:
 - Automated testing
 - Code quality checks
-- Docker image building and testing
+- Automated deployment to Heroku
 - Coverage reporting
 
 ## 📈 Model Performance Visualization

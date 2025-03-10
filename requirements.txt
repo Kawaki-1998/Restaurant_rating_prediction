@@ -17,4 +17,5 @@ jinja2>=3.0.1
 aiofiles>=0.7.0
 statsmodels>=0.13.2
 matplotlib>=3.4.3
-seaborn>=0.11.2 
+seaborn>=0.11.2
+gunicorn>=20.1.0 
