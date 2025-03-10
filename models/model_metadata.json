@@ -1,0 +1,38 @@
+{
+    "model_type": "RandomForestRegressor",
+    "parameters": {
+        "bootstrap": true,
+        "ccp_alpha": 0.0,
+        "criterion": "squared_error",
+        "max_depth": 25,
+        "max_features": "sqrt",
+        "max_leaf_nodes": null,
+        "max_samples": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 2,
+        "min_samples_split": 5,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "n_estimators": 300,
+        "n_jobs": -1,
+        "oob_score": false,
+        "random_state": 42,
+        "verbose": 0,
+        "warm_start": false
+    },
+    "r2_score": 0.9121454572696163,
+    "feature_names": [
+        "votes",
+        "cost_for_two",
+        "location_popularity",
+        "cuisine_popularity",
+        "log_cost",
+        "location_cuisine_popularity",
+        "location_encoded",
+        "rest_type_encoded",
+        "primary_cuisine_encoded",
+        "price_range_encoded",
+        "has_online_delivery",
+        "has_table_booking"
+    ]
+}

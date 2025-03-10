@@ -1,0 +1,30 @@
+data_ingestion:
+  raw_data_path: data/raw/zomato.csv
+  processed_data_path: data/processed/processed_data.csv
+  test_size: 0.2
+  random_state: 42
+
+model_trainer:
+  model_path: models/model.pkl
+  metric_path: models/metrics.json
+  target_column: "rate"
+  test_size: 0.2
+  random_state: 42
+
+model_params:
+  xgboost:
+    n_estimators: 100
+    max_depth: 6
+    learning_rate: 0.1
+    random_state: 42
+  
+  lightgbm:
+    n_estimators: 100
+    max_depth: 6
+    learning_rate: 0.1
+    random_state: 42
+
+  random_forest:
+    n_estimators: 100
+    max_depth: 6
+    random_state: 42 
