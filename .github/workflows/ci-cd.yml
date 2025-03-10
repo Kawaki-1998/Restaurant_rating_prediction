@@ -30,7 +30,6 @@ jobs:
     
     - name: Create test data directories
       run: |
-        mkdir -p models
         mkdir -p dashboard/data
         echo '{"r2_score": 0.9121, "model_type": "RandomForestRegressor", "parameters": {"n_estimators": 100}, "feature_names": ["votes", "cost_for_two", "location", "cuisine_type", "online_order"]}' > models/model_metadata.json
         
@@ -43,7 +42,7 @@ jobs:
     
     - name: Run tests with pytest
       run: |
-        PYTHONPATH=$PYTHONPATH:$(pwd) pytest tests/ --cov=src --cov-report=xml -v
+        python -m pytest tests/ --cov=src --cov-report=xml -v
     
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v2
