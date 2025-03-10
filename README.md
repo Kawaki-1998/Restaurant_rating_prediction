@@ -58,12 +58,26 @@ Our Random Forest model shows strong performance in predicting restaurant rating
 
 ![Prediction Interface](docs/images/dashboard/prediction_interface.png)
 
-The prediction interface allows users to:
-- Select restaurant location
-- Choose cuisine type
-- Input cost for two people
-- Specify additional features
-- Get instant rating predictions
+Our intuitive prediction interface provides a user-friendly form to predict restaurant ratings:
+
+### Input Features
+- **Restaurant Name**: Name of the establishment
+- **Location**: Area or neighborhood location
+- **Restaurant Type**: Category of the restaurant (e.g., Casual Dining, Fine Dining)
+- **Cuisines**: Types of cuisine served
+- **Cost for Two**: Average cost for two people
+- **Online Order**: Whether online ordering is available (Yes/No)
+- **Table Booking**: Whether table booking is available (Yes/No)
+- **Votes**: Number of customer votes/reviews
+
+### Features
+- Real-time prediction using our trained Random Forest model
+- Instant feedback with predicted rating score
+- Clean and responsive design
+- Form validation for accurate inputs
+- Clear display of prediction results
+
+The interface is designed to be intuitive and easy to use, making it simple for users to get accurate rating predictions based on restaurant characteristics.
 
 ## 🛠️ Technologies Used
 
