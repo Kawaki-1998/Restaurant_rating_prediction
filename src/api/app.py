@@ -68,6 +68,7 @@ class ModelMetrics(BaseModel):
     r2_score: float
     model_type: str
     parameters: Dict
+    feature_names: List[str]
     feature_count: int
 
 class FeatureImportance(BaseModel):
@@ -93,7 +94,7 @@ async def predict_rating(restaurant: Restaurant):
     """
     try:
         # Convert restaurant data to dictionary
-        restaurant_data = restaurant.dict()
+        restaurant_data = restaurant.model_dump()
         
         # Make prediction
         prediction = predictor.predict(restaurant_data)
@@ -146,8 +147,27 @@ async def get_model_metrics():
         Model metrics including R2 score, model type, and parameters
     """
     try:
-        with open(os.path.join(predictor.model_dir, "model_metadata.json"), "r") as f:
-            return json.load(f)
+        metadata_path = os.path.join(predictor.model_dir, "model_metadata.json")
+        with open(metadata_path, "r") as f:
+            metadata = json.load(f)
+            
+            # Ensure all required fields are present
+            required_fields = ["r2_score", "model_type", "parameters", "feature_names", "feature_count"]
+            for field in required_fields:
+                if field not in metadata:
+                    if field == "feature_count" and "feature_names" in metadata:
+                        metadata["feature_count"] = len(metadata["feature_names"])
+                    else:
+                        raise ValueError(f"Missing required field: {field}")
+            
+            # Return metadata with all required fields
+            return ModelMetrics(
+                r2_score=metadata["r2_score"],
+                model_type=metadata["model_type"],
+                parameters=metadata["parameters"],
+                feature_names=metadata["feature_names"],
+                feature_count=metadata["feature_count"]
+            )
     except Exception as e:
         logger.error(f"Error getting model metrics: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
