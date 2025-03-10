@@ -136,7 +136,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Contact
 
-Abhishek Ashok Hippargi - [@ahipp01998](https://twitter.com/ahipp01998)
+Abhishek Ashok Hippargi - abhishekashokhippargi@gmail.com
 
 Project Link: [https://github.com/Kawaki-1998/Restaurant_rating_prediction](https://github.com/Kawaki-1998/Restaurant_rating_prediction)
 
@@ -144,19 +144,6 @@ Project Link: [https://github.com/Kawaki-1998/Restaurant_rating_prediction](http
 
 - Contributors and maintainers of the libraries used
 - Everyone who helps improve this project 
-
-## 📸 Screenshots
-
-Our application features a comprehensive dashboard with multiple views:
-
-### Main Dashboard
-![Dashboard](docs/images/dashboard/dashboard_overview.png)
-
-### Model Performance Metrics
-![Metrics](docs/images/dashboard/model_performance.png)
-
-### Interactive Prediction Interface
-![Prediction](docs/images/dashboard/prediction_interface.png)
 
 ## 📚 Documentation
 
@@ -170,8 +157,4 @@ This project uses GitHub Actions for Continuous Integration and Deployment:
 - Automated testing
 - Code quality checks
 - Automated deployment to Render
-- Coverage reporting
-
-## 📈 Model Performance Visualization
-
-![Model Performance](docs/images/model_performance.png) 
+- Coverage reporting 
