@@ -28,10 +28,9 @@ jobs:
         pip install pytest pytest-cov flake8 httpx gunicorn scikit-learn joblib
         pip install -e .
     
-    - name: Create test data directories
+    - name: Create dashboard directory
       run: |
         mkdir -p dashboard/data
-        echo '{"r2_score": 0.9121, "model_type": "RandomForestRegressor", "parameters": {"n_estimators": 100}, "feature_names": ["votes", "cost_for_two", "location", "cuisine_type", "online_order"]}' > models/model_metadata.json
         
     - name: Lint with flake8
       run: |

@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 import io
 import base64
 from fastapi.responses import JSONResponse, HTMLResponse
+import os
 
 # Setup logging
 logging.basicConfig(level=logging.INFO)
@@ -145,12 +146,8 @@ async def get_model_metrics():
         Model metrics including R2 score, model type, and parameters
     """
     try:
-        return {
-            "r2_score": model_metadata["r2_score"],
-            "model_type": model_metadata["model_type"],
-            "parameters": model_metadata["parameters"],
-            "feature_count": len(model_metadata["feature_names"])
-        }
+        with open(os.path.join(predictor.model_dir, "model_metadata.json"), "r") as f:
+            return json.load(f)
     except Exception as e:
         logger.error(f"Error getting model metrics: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))

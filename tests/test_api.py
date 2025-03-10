@@ -1,4 +1,5 @@
 import os
+import json
 import pytest
 from fastapi.testclient import TestClient
 from tests.mock_model import create_mock_model
@@ -15,6 +16,17 @@ def setup_mock_model(tmp_path_factory):
     # Create mock model in the temporary directory
     create_mock_model(model_path)
     
+    # Create model metadata file
+    metadata = {
+        "r2_score": 0.9121,
+        "model_type": "RandomForestRegressor",
+        "parameters": {"n_estimators": 100},
+        "feature_names": ["votes", "cost_for_two", "location", "cuisine_type", "online_order"]
+    }
+    metadata_path = os.path.join(test_model_dir, "model_metadata.json")
+    with open(metadata_path, "w") as f:
+        json.dump(metadata, f)
+    
     # Set environment variable for model path
     os.environ["MODEL_PATH"] = str(test_model_dir)
     
@@ -23,6 +35,8 @@ def setup_mock_model(tmp_path_factory):
     # Cleanup
     if os.path.exists(model_path):
         os.remove(model_path)
+    if os.path.exists(metadata_path):
+        os.remove(metadata_path)
 
 def test_read_root():
     response = client.get("/")
@@ -48,7 +62,8 @@ def test_predict_rating():
 def test_model_metrics():
     response = client.get("/model/metrics")
     assert response.status_code == 200
-    assert "r2_score" in response.json()
-    assert "model_type" in response.json()
-    assert "parameters" in response.json()
-    assert "feature_count" in response.json() 
+    data = response.json()
+    assert "r2_score" in data
+    assert "model_type" in data
+    assert "parameters" in data
+    assert "feature_names" in data 

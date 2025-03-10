@@ -2,23 +2,23 @@ import pandas as pd
 import joblib
 from pathlib import Path
 import logging
+import os
 
 logger = logging.getLogger(__name__)
 
 class RatingPredictor:
-    def __init__(self, model_dir='models'):
-        try:
-            model_dir = Path(model_dir)
-            
-            # Load model and feature engineering objects
-            self.model = joblib.load(model_dir / 'best_model.joblib')
-            self.feature_engineer = joblib.load(model_dir / 'feature_engineer.joblib')
-            
-            logger.info("Model and feature engineering objects loaded successfully")
-            
-        except Exception as e:
-            logger.error(f"Error loading model: {str(e)}")
-            raise e
+    def __init__(self):
+        self.model = None
+        self.model_dir = Path(os.getenv('MODEL_PATH', 'models'))
+        
+    def _load_model(self):
+        """Lazy load the model when needed"""
+        if self.model is None:
+            try:
+                model_path = self.model_dir / 'best_model.joblib'
+                self.model = joblib.load(model_path)
+            except Exception as e:
+                raise RuntimeError(f"Failed to load model from {model_path}: {str(e)}")
     
     def predict(self, restaurant_data):
         """
@@ -80,6 +80,11 @@ class RatingPredictor:
         except Exception as e:
             logger.error(f"Error making batch predictions: {str(e)}")
             raise e
+
+    def get_feature_importance(self):
+        """Get feature importance from the model"""
+        self._load_model()  # Lazy load the model
+        return self.model.feature_importances_
 
 def create_sample_prediction():
     """Create a sample prediction to test the model"""
