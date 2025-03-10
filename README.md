@@ -26,11 +26,11 @@ This project analyzes restaurant data from Zomato to predict restaurant ratings.
 ## 📊 Data Analysis Insights
 
 ### Rating Distribution
-![Rating Distribution](docs/images/visualizations/rating_distribution.png)
+<img src="https://raw.githubusercontent.com/Kawaki-1998/Restaurant_rating_prediction/main/docs/images/visualizations/rating_distribution.png" alt="Rating Distribution" width="800"/>
 *Distribution of restaurant ratings shows a normal distribution with a slight right skew*
 
 ### Top Cuisines Analysis
-![Top Cuisines](docs/images/visualizations/top_cuisines.png)
+<img src="https://raw.githubusercontent.com/Kawaki-1998/Restaurant_rating_prediction/main/docs/images/visualizations/top_cuisines.png" alt="Top Cuisines" width="800"/>
 *Analysis of the top-performing cuisines by average rating*
 
 ### Location Analysis
@@ -38,15 +38,15 @@ This project analyzes restaurant data from Zomato to predict restaurant ratings.
 *Geographic distribution of restaurants and their ratings*
 
 ### Service Analysis
-![Service Analysis](docs/images/visualizations/services_analysis.png)
+<img src="https://raw.githubusercontent.com/Kawaki-1998/Restaurant_rating_prediction/main/docs/images/visualizations/services_analysis.png" alt="Service Analysis" width="800"/>
 *Comparison of online ordering and table booking availability*
 
 ### Cost vs Rating Analysis
-![Cost Analysis](docs/images/visualizations/cost_analysis.png)
+<img src="https://raw.githubusercontent.com/Kawaki-1998/Restaurant_rating_prediction/main/docs/images/visualizations/cost_analysis.png" alt="Cost Analysis" width="800"/>
 *Relationship between restaurant cost and ratings*
 
 ### Feature Importance
-![Feature Importance](docs/images/visualizations/feature_importance.png)
+<img src="https://raw.githubusercontent.com/Kawaki-1998/Restaurant_rating_prediction/main/docs/images/visualizations/feature_importance.png" alt="Feature Importance" width="800"/>
 *Key factors influencing restaurant ratings*
 
 ## 🛠️ Technologies Used
