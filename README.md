@@ -6,10 +6,14 @@ A machine learning project that predicts restaurant ratings based on various fea
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.68.0-green.svg)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-1.0.0-orange.svg)
 ![Docker](https://img.shields.io/badge/Docker-27.5.1-blue.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![CI/CD](https://github.com/Kawaki-1998/Restaurant_rating_prediction/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/Kawaki-1998/Restaurant_rating_prediction/actions/workflows/ci-cd.yml)
 
 ## 📊 Project Overview
 
 This project analyzes restaurant data from Zomato to predict restaurant ratings. It uses machine learning to understand what factors influence a restaurant's rating and provides a user-friendly interface for making predictions.
+
+![Dashboard Overview](docs/images/dashboard.png)
 
 ### Key Features
 
@@ -18,6 +22,8 @@ This project analyzes restaurant data from Zomato to predict restaurant ratings.
 - 🌐 **Interactive Web Dashboard**: Real-time prediction interface
 - 🐳 **Docker Support**: Easy deployment using containers
 - 📈 **Feature Importance Analysis**: Understanding key factors affecting ratings
+
+![Feature Importance](docs/images/feature_importance.png)
 
 ## 🛠️ Technologies Used
 
@@ -138,3 +144,32 @@ Project Link: [https://github.com/Kawaki-1998/Restaurant_rating_prediction](http
 - Zomato for providing the dataset
 - Contributors and maintainers of the libraries used
 - Anyone who helps improve this project 
+
+## 📸 Screenshots
+
+### Dashboard
+![Dashboard](docs/images/dashboard_full.png)
+
+### Model Metrics
+![Metrics](docs/images/metrics.png)
+
+### Prediction Interface
+![Prediction](docs/images/prediction.png)
+
+## 📚 Documentation
+
+- [Model Architecture and Training](docs/model.md)
+- [API Documentation](http://localhost:8000/docs)
+- [Contributing Guidelines](CONTRIBUTING.md)
+
+## 🚀 CI/CD Pipeline
+
+This project uses GitHub Actions for Continuous Integration and Deployment:
+- Automated testing
+- Code quality checks
+- Docker image building and testing
+- Coverage reporting
+
+## 📈 Model Performance Visualization
+
+![Model Performance](docs/images/model_performance.png) 
