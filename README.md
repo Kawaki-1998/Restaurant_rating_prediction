@@ -1,23 +1,23 @@
 # 🍽️ Restaurant Rating Prediction
 
-A machine learning project that predicts restaurant ratings based on various features using the Zomato dataset. This project includes exploratory data analysis (EDA), model development, and a web-based dashboard for real-time predictions.
+A machine learning project that predicts restaurant ratings based on various features using restaurant data. This project includes exploratory data analysis (EDA), model development, and a web-based dashboard for real-time predictions.
 
 ![Python](https://img.shields.io/badge/Python-3.9-blue.svg)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.68.0-green.svg)
-![scikit-learn](https://img.shields.io/badge/scikit--learn-1.0.0-orange.svg)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-0.24.2-orange.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CI/CD](https://github.com/Kawaki-1998/Restaurant_rating_prediction/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/Kawaki-1998/Restaurant_rating_prediction/actions/workflows/ci-cd.yml)
 
 ## 📊 Project Overview
 
-This project analyzes restaurant data from Zomato to predict restaurant ratings. It uses machine learning to understand what factors influence a restaurant's rating and provides a user-friendly interface for making predictions.
+This project analyzes restaurant data to predict restaurant ratings. It uses machine learning to understand what factors influence a restaurant's rating and provides a user-friendly interface for making predictions.
 
-<img src="docs/images/dashboard/dashboard_overview.png" alt="Dashboard Overview" width="800"/>
+![Dashboard Overview](docs/images/dashboard/dashboard_overview.png)
 
 ### Key Features
 
 - 🔍 **Exploratory Data Analysis**: Comprehensive analysis of restaurant data
-- 🤖 **Machine Learning Model**: Random Forest model with 91.21% accuracy (R² score)
+- 🤖 **Machine Learning Model**: Random Forest model for accurate rating predictions
 - 🌐 **Interactive Web Dashboard**: Real-time prediction interface
 - 🐳 **Docker Support**: Easy deployment using containers
 - 📈 **Feature Importance Analysis**: Understanding key factors affecting ratings
@@ -25,37 +25,45 @@ This project analyzes restaurant data from Zomato to predict restaurant ratings.
 ## 📊 Data Analysis Insights
 
 ### Rating Distribution
-<img src="docs/images/visualizations/rating_distribution.png" alt="Rating Distribution" width="800"/>
+![Rating Distribution](docs/images/visualizations/rating_distribution.png)
 
-*Distribution of restaurant ratings shows a normal distribution with a slight right skew*
+*The distribution of restaurant ratings shows a balanced spread across different rating levels, with most restaurants falling in the 3.8-4.7 range.*
 
 ### Cuisine Analysis
-<img src="docs/images/visualizations/cuisine_analysis.png" alt="Cuisine Analysis" width="800"/>
+![Cuisine Analysis](docs/images/visualizations/cuisine_analysis.png)
 
-*Analysis of ratings by cuisine type*
+*Analysis shows the diversity of cuisine types in our dataset, with North Indian and South Indian cuisines being prominent.*
 
 ### Location Analysis
-<img src="docs/images/visualizations/location_analysis.png" alt="Location Analysis" width="800"/>
+![Location Analysis](docs/images/visualizations/location_analysis.png)
 
-*Geographic distribution of restaurants and their ratings*
+*Geographic distribution of restaurants and their average ratings across different locations, showing both restaurant density and rating patterns.*
 
 ### Cost vs Rating Analysis
-<img src="docs/images/visualizations/cost_analysis.png" alt="Cost Analysis" width="800"/>
+![Cost Analysis](docs/images/visualizations/cost_analysis.png)
 
-*Relationship between restaurant cost and ratings*
+*Relationship between restaurant cost and ratings, helping understand price-quality correlations.*
 
 ## 📈 Model Performance
 
-<img src="docs/images/dashboard/model_performance.png" alt="Model Performance" width="800"/>
+![Model Performance](docs/images/dashboard/model_performance.png)
 
+Our Random Forest model shows strong performance in predicting restaurant ratings:
+- **Features Used**: Location, Cuisine Type, Cost for Two, Votes
 - **Model Type**: Random Forest Regressor
-- **R² Score**: 0.9121 (91.21% accuracy)
-- **MAE**: 0.234
-- **RMSE**: 0.312
+- **Evaluation**: Strong correlation between predicted and actual ratings
+- **Use Case**: Accurate rating predictions for new restaurants
 
 ## 🎯 Prediction Interface
 
-<img src="docs/images/dashboard/prediction_interface.png" alt="Prediction Interface" width="800"/>
+![Prediction Interface](docs/images/dashboard/prediction_interface.png)
+
+The prediction interface allows users to:
+- Select restaurant location
+- Choose cuisine type
+- Input cost for two people
+- Specify additional features
+- Get instant rating predictions
 
 ## 🛠️ Technologies Used
 
@@ -78,11 +86,11 @@ Restaurant_rating_prediction/
 │   ├── api/           # FastAPI application
 │   ├── data/          # Data processing scripts
 │   ├── models/        # Model training scripts
-│   └── analysis/      # Analysis scripts
+│   └── visualization/ # Visualization scripts
 ├── static/            # Static files for web dashboard
 ├── templates/         # HTML templates
-├── tests/             # Unit tests
-└── requirements.txt   # Python dependencies
+├── tests/            # Unit tests
+└── requirements.txt  # Python dependencies
 ```
 
 ## 🚀 Getting Started
@@ -111,52 +119,16 @@ Restaurant_rating_prediction/
    python -m uvicorn src.api.app:app --reload
    ```
 
-### Deployment
-
-1. **Deploy to Render**
-   - Fork this repository
-   - Go to [Render.com](https://render.com) and create a free account
-   - Click on "New +" and select "Web Service"
-   - Connect your GitHub account and select this repository
-   - The deployment will be automatic using the `render.yaml` configuration
-
-2. **Deploy to other platforms**
-   The application can be deployed to any platform that supports Python web applications:
-   - Install requirements: `pip install -r requirements.txt`
-   - Start with gunicorn: `gunicorn src.api.app:app`
-
-## 🌐 Using the Web Dashboard
-
-1. Access the dashboard at `http://localhost:8000/dashboard`
-2. View model metrics and feature importance
-3. Make real-time predictions using the form
-
-## 📊 Model Performance
-
-- **Model Type**: Random Forest Regressor
-- **R² Score**: 0.9121 (91.21% accuracy)
-- **Key Features**: Location, Cuisine Type, Cost for Two, Online Ordering
-
-## 🔍 Feature Importance
-
-Top factors affecting restaurant ratings:
-1. Votes
-2. Cost for Two
-3. Location
-4. Cuisine Type
-5. Online Ordering Availability
-
-## 📝 API Documentation
+### API Documentation
 
 Access the API documentation at `http://localhost:8000/docs` for:
 - Single prediction endpoint
 - Batch prediction endpoint
 - Model metrics endpoint
-- Feature importance visualization
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! Please feel free to submit a Pull Request. Check out our [Contributing Guidelines](CONTRIBUTING.md) for more details.
 
 ## 📄 License
 
@@ -170,9 +142,8 @@ Project Link: [https://github.com/Kawaki-1998/Restaurant_rating_prediction](http
 
 ## 🙏 Acknowledgments
 
-- Zomato for providing the dataset
 - Contributors and maintainers of the libraries used
-- Anyone who helps improve this project 
+- Everyone who helps improve this project 
 
 ## 📸 Screenshots
 
