@@ -64,7 +64,6 @@ This project analyzes restaurant data from Zomato to predict restaurant ratings.
 - **FastAPI**: Web API framework
 - **Pandas/NumPy**: Data manipulation
 - **Matplotlib/Seaborn**: Data visualization
-- **Docker**: Containerization
 
 ## 📁 Project Structure
 
