@@ -3,9 +3,8 @@ import json
 import pytest
 from fastapi.testclient import TestClient
 from tests.mock_model import create_mock_model
-from src.api.app import app
-
-client = TestClient(app)
+from src.api.app import app, predictor, model_metadata
+from src.models.predict import RatingPredictor
 
 @pytest.fixture(scope="session", autouse=True)
 def setup_mock_model(tmp_path_factory):
@@ -43,6 +42,11 @@ def setup_mock_model(tmp_path_factory):
     # Set environment variable for model path
     os.environ["MODEL_PATH"] = str(test_model_dir)
     
+    # Update app's predictor and metadata
+    app.dependency_overrides = {}
+    app.state.predictor = RatingPredictor()
+    app.state.model_metadata = metadata
+    
     yield
     
     # Cleanup
@@ -51,12 +55,17 @@ def setup_mock_model(tmp_path_factory):
     if os.path.exists(metadata_path):
         os.remove(metadata_path)
 
-def test_read_root():
+@pytest.fixture
+def client():
+    """Create a test client"""
+    return TestClient(app)
+
+def test_read_root(client):
     response = client.get("/")
     assert response.status_code == 200
     assert response.json() == {"message": "Welcome to Restaurant Rating Prediction API"}
 
-def test_predict_rating():
+def test_predict_rating(client):
     test_restaurant = {
         "name": "Test Restaurant",
         "location": "Indiranagar",
@@ -77,7 +86,7 @@ def test_predict_rating():
     assert isinstance(data["predicted_rating"], (int, float))
     assert 0 <= data["predicted_rating"] <= 5  # Rating should be between 0 and 5
 
-def test_model_metrics():
+def test_model_metrics(client):
     response = client.get("/model/metrics")
     assert response.status_code == 200
     data = response.json()

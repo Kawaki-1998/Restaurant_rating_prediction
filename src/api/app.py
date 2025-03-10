@@ -39,17 +39,20 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 # Initialize templates
 templates = Jinja2Templates(directory="templates")
 
-# Initialize predictor
+# Initialize predictor and metadata
 predictor = RatingPredictor()
-
-# Load model metadata
 model_dir = Path('models')
 model_metadata = {}
+
 try:
     with open(model_dir / 'model_metadata.json', 'r') as f:
         model_metadata = json.load(f)
 except Exception as e:
     logger.warning(f"Failed to load model metadata: {str(e)}")
+
+# Store predictor and metadata in app state
+app.state.predictor = predictor
+app.state.model_metadata = model_metadata
 
 class Restaurant(BaseModel):
     """Restaurant data model"""
@@ -86,7 +89,7 @@ async def root():
     return {"message": "Welcome to Restaurant Rating Prediction API"}
 
 @app.post("/predict", response_model=PredictionResponse)
-async def predict_rating(restaurant: Restaurant):
+async def predict_rating(restaurant: Restaurant, request: Request):
     """
     Predict rating for a single restaurant
     
@@ -101,7 +104,7 @@ async def predict_rating(restaurant: Restaurant):
         restaurant_data = restaurant.model_dump()
         
         # Make prediction
-        prediction = predictor.predict(restaurant_data)
+        prediction = request.app.state.predictor.predict(restaurant_data)
         
         return {
             "restaurant_name": restaurant.name,
@@ -143,7 +146,7 @@ async def predict_ratings_batch(restaurants: List[Restaurant]):
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/model/metrics", response_model=ModelMetrics)
-async def get_model_metrics():
+async def get_model_metrics(request: Request):
     """
     Get model performance metrics
     
@@ -151,7 +154,7 @@ async def get_model_metrics():
         Model metrics including R2 score, model type, and parameters
     """
     try:
-        metadata_path = os.path.join(predictor.model_dir, "model_metadata.json")
+        metadata_path = os.path.join(request.app.state.predictor.model_dir, "model_metadata.json")
         with open(metadata_path, "r") as f:
             metadata = json.load(f)
             
@@ -177,7 +180,7 @@ async def get_model_metrics():
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/model/feature_importance", response_model=List[FeatureImportance])
-async def get_feature_importance():
+async def get_feature_importance(request: Request):
     """
     Get feature importance scores
     
@@ -186,11 +189,11 @@ async def get_feature_importance():
     """
     try:
         # Load model if not already loaded
-        predictor._load_model()
+        request.app.state.predictor._load_model()
         
         feature_importance = []
-        for feature_name, importance in zip(model_metadata["feature_names"], 
-                                         predictor.model.feature_importances_):
+        for feature_name, importance in zip(request.app.state.model_metadata["feature_names"], 
+                                         request.app.state.predictor.model.feature_importances_):
             feature_importance.append({
                 "feature_name": feature_name,
                 "importance_score": float(importance)
@@ -205,7 +208,7 @@ async def get_feature_importance():
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/model/feature_importance_plot")
-async def get_feature_importance_plot():
+async def get_feature_importance_plot(request: Request):
     """
     Get feature importance visualization
     
@@ -215,8 +218,8 @@ async def get_feature_importance_plot():
     try:
         # Create feature importance DataFrame
         feature_importance = pd.DataFrame({
-            'feature': model_metadata["feature_names"],
-            'importance': predictor.model.feature_importances_
+            'feature': request.app.state.model_metadata["feature_names"],
+            'importance': request.app.state.predictor.model.feature_importances_
         }).sort_values('importance', ascending=False)
 
         # Create plot
