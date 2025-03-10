@@ -1,7 +1,13 @@
+import pytest
 from fastapi.testclient import TestClient
+from .mock_model import create_mock_model
 from src.api.app import app
 
 client = TestClient(app)
+
+@pytest.fixture(scope="session", autouse=True)
+def setup_mock_model():
+    create_mock_model()
 
 def test_read_root():
     response = client.get("/")
