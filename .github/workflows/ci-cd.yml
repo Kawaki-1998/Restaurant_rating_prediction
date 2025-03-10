@@ -50,12 +50,11 @@ jobs:
         file: ./coverage.xml
         fail_ci_if_error: true
 
-    - name: Deploy to Production
+    - name: Deploy to Render
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       env:
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+        RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
       run: |
-        curl https://cli-assets.heroku.com/install.sh | sh
-        heroku git:remote -a $HEROKU_APP_NAME
-        git push heroku main 
+        curl -X POST https://api.render.com/v1/services/${{ secrets.RENDER_SERVICE_ID }}/deploys \
+          -H "accept: application/json" \
+          -H "authorization: Bearer ${{ secrets.RENDER_API_KEY }}" 

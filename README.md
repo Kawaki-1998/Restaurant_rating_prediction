@@ -114,17 +114,17 @@ Restaurant_rating_prediction/
 
 ### Deployment
 
-1. **Deploy to Heroku**
-   ```bash
-   # Install Heroku CLI if not already installed
-   heroku create your-app-name
-   git push heroku main
-   ```
+1. **Deploy to Render**
+   - Fork this repository
+   - Go to [Render.com](https://render.com) and create a free account
+   - Click on "New +" and select "Web Service"
+   - Connect your GitHub account and select this repository
+   - The deployment will be automatic using the `render.yaml` configuration
 
 2. **Deploy to other platforms**
    The application can be deployed to any platform that supports Python web applications:
    - Install requirements: `pip install -r requirements.txt`
-   - Start with gunicorn: `gunicorn app:app`
+   - Start with gunicorn: `gunicorn src.api.app:app`
 
 ## 🌐 Using the Web Dashboard
 
@@ -197,7 +197,7 @@ Project Link: [https://github.com/Kawaki-1998/Restaurant_rating_prediction](http
 This project uses GitHub Actions for Continuous Integration and Deployment:
 - Automated testing
 - Code quality checks
-- Automated deployment to Heroku
+- Automated deployment to Render
 - Coverage reporting
 
 ## 📈 Model Performance Visualization
