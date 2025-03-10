@@ -23,7 +23,31 @@ This project analyzes restaurant data from Zomato to predict restaurant ratings.
 - 🐳 **Docker Support**: Easy deployment using containers
 - 📈 **Feature Importance Analysis**: Understanding key factors affecting ratings
 
-![Feature Importance](docs/images/feature_importance.png)
+## 📊 Data Analysis Insights
+
+### Rating Distribution
+![Rating Distribution](docs/images/visualizations/rating_distribution.png)
+*Distribution of restaurant ratings shows a normal distribution with a slight right skew*
+
+### Top Cuisines Analysis
+![Top Cuisines](docs/images/visualizations/top_cuisines.png)
+*Analysis of the top-performing cuisines by average rating*
+
+### Location Analysis
+![Location Analysis](docs/images/visualizations/location_analysis.png)
+*Geographic distribution of restaurants and their ratings*
+
+### Service Analysis
+![Service Analysis](docs/images/visualizations/services_analysis.png)
+*Comparison of online ordering and table booking availability*
+
+### Cost vs Rating Analysis
+![Cost Analysis](docs/images/visualizations/cost_analysis.png)
+*Relationship between restaurant cost and ratings*
+
+### Feature Importance
+![Feature Importance](docs/images/visualizations/feature_importance.png)
+*Key factors influencing restaurant ratings*
 
 ## 🛠️ Technologies Used
 
